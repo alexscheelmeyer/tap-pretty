@@ -1,0 +1,12 @@
+
+  [37m[1mbeep[22m[39m
+    [32m✔[39m [90mshould be equal[39m
+    [32m✔[39m [90mshould be equivalent[39m
+
+  [37m[1mboop[22m[39m
+    [32m✔[39m [90mshould be equal[39m
+    [32m✔[39m [90m(unnamed assert)[39m
+
+[32m[1m4 of 4 passing
+[22m[39m[90m(in 9ms)
+[39m

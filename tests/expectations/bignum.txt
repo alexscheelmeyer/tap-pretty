@@ -1,0 +1,8 @@
+    [32m✔[39m 
+    [32m✔[39m 
+  [31mBad test number "136211425", 1 to 2 expected
+[39m  [31mBad test number "136211426", 1 to 2 expected
+[39m
+[32m[1m2 of 2 passing
+[22m[39m[90m(in 11ms)
+[39m

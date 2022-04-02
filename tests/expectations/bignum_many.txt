@@ -1,0 +1,15 @@
+    [32m✔[39m 
+    [32m✔[39m 
+  [31mBad test number "99997", 1 to 2 expected
+[39m  [31mBad test number "99998", 1 to 2 expected
+[39m  [31mBad test number "99999", 1 to 2 expected
+[39m  [31mBad test number "100000", 1 to 2 expected
+[39m  [31mBad test number "100001", 1 to 2 expected
+[39m  [31mBad test number "100002", 1 to 2 expected
+[39m  [31mBad test number "100003", 1 to 2 expected
+[39m  [31mBad test number "100004", 1 to 2 expected
+[39m  [31mBad test number "100005", 1 to 2 expected
+[39m
+[32m[1m2 of 2 passing
+[22m[39m[90m(in 10ms)
+[39m

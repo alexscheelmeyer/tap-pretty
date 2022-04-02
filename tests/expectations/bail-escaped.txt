@@ -1,0 +1,6 @@
+    [32m✔[39m 
+    [34mBail out! hash \# slash \\ noesc hash # noesc slash \ done[39m
+
+[32m[1m1 of 1 passing
+[22m[39m[90m(in 9ms)
+[39m

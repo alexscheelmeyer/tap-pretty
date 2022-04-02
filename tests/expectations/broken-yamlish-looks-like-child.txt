@@ -1,0 +1,11 @@
+    [32m✔[39m [90mcallback happened[39m
+    [34m  ok:[39m
+    [34m    - I wished for a bailout![39m
+    [34m    - lots of other shapes here can look like valid tap[39m
+    [34m ...[39m
+    [32m✔[39m [90mchild test[39m
+    [32m✔[39m [90mshould come last[39m
+
+[32m[1m3 of 3 passing
+[22m[39m[90m(in 10ms)
+[39m

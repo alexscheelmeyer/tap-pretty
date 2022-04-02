@@ -1,0 +1,23 @@
+#! /usr/bin/env node
+
+const argv = require('minimist')(process.argv.slice(2));
+
+const { version } = require('../package.json');
+const tapPretty = require('../index.js');
+
+if (argv.version) {
+  console.log(version);
+} else {
+  tapPretty(argv, process.stdin)
+    .pipe(process.stdout);
+
+  process.on('exit', (status) => {
+    if (status === 1) {
+      process.exit(1);
+    }
+
+    if (tapPretty.failed) {
+      process.exit(1);
+    }
+  });
+}
