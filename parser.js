@@ -39,6 +39,19 @@ function Parser() {
         try {
           const diagText = diagLines.join('\n').replace(/\\'/g, "''"); // note: js-yaml expects '' as escape for ' rather than \'
           const value = yaml.load(diagText);
+          // Note: yaml does not support values specified as "undefined" (without the quotes)
+          // and js-yaml ends up parsing it as a string, which causes any failure message
+          // to erroneously indicate that a string was found.
+          // It would be possible to expand the yaml spec with a special !!js/undefined tag
+          // tag and parse that as actual undefined type (see: https://github.com/nodeca/js-yaml-js-types )
+          // but that would require TAP runners to output that and if they did that, then other
+          // formatters would probably choke on it. So it does not seem feasible to improve
+          // the situation without locking the runner to the formatter.
+          // so as a hack, just always convert the string "undefined" to the type undefined.
+          // and only do it for top level values (no "deep" hacking).
+          if (value.expected === 'undefined') value.expected = undefined;
+          if (value.actual === 'undefined') value.actual = undefined;
+
           diagLines = [];
           return { type: 'diag', value };
         } catch (e) {
