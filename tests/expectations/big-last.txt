@@ -4,6 +4,6 @@
     [32m✔[39m 
   [31mBad test number "6", 1 to 5 expected
 [39m
-[32m[1m4 of 5 passing
+[32m[1m4 of 4 passing
 [22m[39m[90m(in 9ms)
 [39m

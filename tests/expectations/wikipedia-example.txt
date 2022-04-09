@@ -1,15 +1,15 @@
     [32m✔[39m [90mInput file opened[39m
-    [31m✖ First line of the input valid.[39m
-    [34m    More output from test 2. There can be[39m
+    [31m✖ First line of the input valid.
+[39m    [34m    More output from test 2. There can be[39m
     [34m    arbitrary number of lines for any output[39m
     [34m    so long as there is at least some kind[39m
     [34m    of whitespace at beginning of line.[39m
     [32m✔[39m [90mRead the rest of the file[39m
 
   [37m[1mTAP meta information[22m[39m
-    [31m✖ Summarized correctly[39m
-
-[31m[1m2 of 4 failing
-[22m[39m[32m[1m2 of 4 passing
-[22m[39m[90m(in 10ms)
+    [4m[TODO] Summarized correctly
+[24m
+[31m[1m1 of 3 failing
+[22m[39m[32m[1m2 of 3 passing
+[22m[39m[90m(in 12ms)
 [39m

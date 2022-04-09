@@ -3,6 +3,6 @@
     [32m✔[39m 
     [34mBail out!  GERONIMMMOOOOOO!!![39m
 
-[32m[1m3 of 5 passing
-[22m[39m[90m(in 14ms)
+[32m[1m3 of 3 passing
+[22m[39m[90m(in 11ms)
 [39m

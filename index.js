@@ -130,7 +130,7 @@ function tapPretty(argv, inputStream) {
         if ('expected' in obj.value && 'actual' in obj.value) {
           const { operator, expected, actual } = obj.value;
           if (typeof expected !== typeof actual) {
-            this.push(`Expected ${typeof expected} (${expected}), but got ${typeof actual} (${actual})\n`);
+            this.push('      ' + underline(red(`Expected ${typeof expected} (${expected}), but got ${typeof actual} (${actual})\n`)));
           } else if (typeof expected === 'object') {
             const str = difflet({ indent: 2, comment: true }).compare(expected, actual);
             this.push(`      ${str.replace(/\n/g, '\n      ')}\n`);
@@ -138,7 +138,7 @@ function tapPretty(argv, inputStream) {
             const objs = diff.diffChars(expected, actual);
             this.push(objs.map(diffColorer).join(''));
           } else {
-            this.push(obj.value);
+            this.push('      ' + underline(red(`Expected ${expected}, but got ${actual}\n`)));
           }
         }
         break;

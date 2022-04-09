@@ -1,8 +1,9 @@
 
-  push commit to empty repository
-    ✖ Pushing basic commit should work to update repository: did not match expectation
-Expected number (200), but got string (200)
-
-1 of 1 failing
-0 of 1 passing
-(in 14ms)
+  [37m[1mpush commit to empty repository[22m[39m
+    [31m✖ Pushing basic commit should work to update repository: did not match expectation
+[39m      [4m[31mExpected number (200), but got string (200)
+[39m[24m
+[31m[1m1 of 1 failing
+[22m[39m[32m[1m0 of 1 passing
+[22m[39m[90m(in 13ms)
+[39m

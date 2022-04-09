@@ -1,0 +1,11 @@
+
+  [37m[1mCreate repository[22m[39m
+    [32m✔[39m [90mDefault empty repository[39m
+    [31m✖ Create repository: did not match expectation
+[39m      [4m[31mExpected 201, but got 200
+[39m[24m    [32m✔[39m [90mRepository ok[39m
+
+[31m[1m1 of 3 failing
+[22m[39m[32m[1m2 of 3 passing
+[22m[39m[90m(in 16ms)
+[39m

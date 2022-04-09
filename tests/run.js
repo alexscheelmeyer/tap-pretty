@@ -25,8 +25,8 @@ async function run() {
     const output = await getStream(tapPretty({}, inStream));
 
     console.log(inputName);
-    const [ same, removed=[], added=[] ] = diff.diffLines(removeLastLine(contents), removeLastLine(output));
-    if (removed.length > 0 || added.length > 0) {
+    const [ same, removed, added ] = diff.diffLines(removeLastLine(contents), removeLastLine(output));
+    if (removed || added) {
       failures++;
       console.log('failed comparison:', same, removed, added);
     }

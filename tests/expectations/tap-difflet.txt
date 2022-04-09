@@ -6,12 +6,12 @@
   [37m[1mboop[22m[39m
     [32m✔[39m [90mshould be equal[39m
     [32m✔[39m [90m(unnamed assert)[39m
-    [31m✖ diag with three chars[39m
-      {[32m[1m
+    [31m✖ diag with three chars
+[39m      {[32m[1m
         "foo" : "bar"[0m[36m[1m // != undefined[0m
       }
-    [31m✖ diag with invalid quote escape from tape object-inspect[39m
-      {
+    [31m✖ diag with invalid quote escape from tape object-inspect
+[39m      {
         "foo" : [34m[1m"bar"[0m[36m[1m // != "bar\'s"[0m
       }
 
@@ -19,5 +19,5 @@
 
 [31m[1m2 of 6 failing
 [22m[39m[32m[1m4 of 6 passing
-[22m[39m[90m(in 24ms)
+[22m[39m[90m(in 22ms)
 [39m

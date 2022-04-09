@@ -1,6 +1,6 @@
 {
   "name": "tap-pretty",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Yet another TAP output formatter",
   "main": "index.js",
   "scripts": {
