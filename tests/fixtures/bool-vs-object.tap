@@ -1,0 +1,9 @@
+TAP version 13
+# Login test user
+not ok 1 Authentication token: did not match expectation
+ ---
+ actual: {"status":"OK","accessToken":"<token>"}
+ expected: true
+ ...
+
+1..1

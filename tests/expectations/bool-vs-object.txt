@@ -1,0 +1,9 @@
+
+  [37m[1mLogin test user[22m[39m
+    [31m✖ Authentication token: did not match expectation
+[39m      [4m[31mExpected boolean (true), but got object ({"status":"OK","accessToken":"<token>"})
+[39m[24m
+[31m[1m1 of 1 failing
+[22m[39m[32m[1m0 of 1 passing
+[22m[39m[90m(in 5ms)
+[39m

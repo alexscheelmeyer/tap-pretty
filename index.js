@@ -130,7 +130,8 @@ function tapPretty(argv, inputStream) {
         if ('expected' in obj.value && 'actual' in obj.value) {
           const { operator, expected, actual } = obj.value;
           if (typeof expected !== typeof actual) {
-            this.push('      ' + underline(red(`Expected ${typeof expected} (${expected}), but got ${typeof actual} (${actual})\n`)));
+            const actualStr = typeof actual === 'object' ? JSON.stringify(actual) : String(actual);
+            this.push('      ' + underline(red(`Expected ${typeof expected} (${expected}), but got ${typeof actual} (${actualStr})\n`)));
           } else if (typeof expected === 'object') {
             const str = difflet({ indent: 2, comment: true }).compare(expected, actual);
             this.push(`      ${str.replace(/\n/g, '\n      ')}\n`);
