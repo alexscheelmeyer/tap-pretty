@@ -1,0 +1,13 @@
+TAP version 13
+Built docker image: 74e89fea6203990463df2b40d3194d0523f40ee146d068cecc3897826a724fac
+Docker container (e68c9bfcaf2105cc09e1b2a010c9cfc6a0dee6c790cefa27339449492ddffe71) running
+ok 1 create test user
+ok 2 create test repository
+ok 3 push to test repository
+not ok 4 clone from test repository: did not match expectation
+ ---
+ actual: "new file\n"
+ expected: "new file"
+ ...
+
+1..4

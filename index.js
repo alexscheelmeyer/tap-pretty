@@ -4,6 +4,7 @@ const through = require('through2');
 const symbols = require('figures');
 const prettyms = require('pretty-ms');
 const difflet = require('difflet');
+const diff = require('diff');
 
 function pad (str, n = 2) {
   return str.padStart(str.length + n);
@@ -14,11 +15,15 @@ function isFinalStats(str) {
 }
 
 function diffColorer(obj) {
+  function valueMapper(val) {
+    return val.replace(/\n/g, '<newline').replace(/\s/g, '<whitespace>');
+  }
+
   if (obj.added) {
     return (
       '\033[' + 7 + 'm'   // inverse
       + '\033[' + 32 + 'm'  // green
-      + obj.value
+      + valueMapper(obj.value)
       + '\033[' + 39 + 'm'
       + '\033[' + 27 + 'm'
     );
@@ -26,7 +31,7 @@ function diffColorer(obj) {
     return (
       '\033[' + 7 + 'm'     // inverse
       + '\033[' + 31 + 'm'  // red
-      + obj.value
+      + valueMapper(obj.value)
       + '\033[' + 39 + 'm'
       + '\033[' + 27 + 'm'
     );
@@ -137,7 +142,7 @@ function tapPretty(argv, inputStream) {
             this.push(`      ${str.replace(/\n/g, '\n      ')}\n`);
           } else if (typeof expected === 'string') {
             const objs = diff.diffChars(expected, actual);
-            this.push(objs.map(diffColorer).join(''));
+            this.push(`      ${objs.map(diffColorer).join('')}\n`);
           } else {
             this.push('      ' + underline(red(`Expected ${expected}, but got ${actual}\n`)));
           }

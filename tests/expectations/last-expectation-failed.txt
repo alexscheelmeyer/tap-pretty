@@ -1,0 +1,12 @@
+    [34mBuilt docker image: 74e89fea6203990463df2b40d3194d0523f40ee146d068cecc3897826a724fac[39m
+    [34mDocker container (e68c9bfcaf2105cc09e1b2a010c9cfc6a0dee6c790cefa27339449492ddffe71) running[39m
+    [32m✔[39m [90mcreate test user[39m
+    [32m✔[39m [90mcreate test repository[39m
+    [32m✔[39m [90mpush to test repository[39m
+    [31m✖ clone from test repository: did not match expectation
+[39m      new file[7m[32m<newline[39m[27m
+
+[31m[1m1 of 4 failing
+[22m[39m[32m[1m3 of 4 passing
+[22m[39m[90m(in 7ms)
+[39m
