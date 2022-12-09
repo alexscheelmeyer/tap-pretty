@@ -1,12 +1,12 @@
 const Parser = require('./parser');
-const { bold, cyan, dim, green, options, red, underline, white, gray, blue } = require('colorette');
+const { bold, green, inverse, red, underline, white, gray, blue } = require('colorette');
 const through = require('through2');
 const symbols = require('figures');
 const prettyms = require('pretty-ms');
 const difflet = require('difflet');
 const diff = require('diff');
 
-function pad (str, n = 2) {
+function pad(str, n = 2) {
   return str.padStart(str.length + n);
 }
 
@@ -20,24 +20,12 @@ function diffColorer(obj) {
   }
 
   if (obj.added) {
-    return (
-      '\033[' + 7 + 'm'   // inverse
-      + '\033[' + 32 + 'm'  // green
-      + valueMapper(obj.value)
-      + '\033[' + 39 + 'm'
-      + '\033[' + 27 + 'm'
-    );
+    return inverse(green(valueMapper(obj.value)));
   } else if (obj.removed) {
-    return (
-      '\033[' + 7 + 'm'     // inverse
-      + '\033[' + 31 + 'm'  // red
-      + valueMapper(obj.value)
-      + '\033[' + 39 + 'm'
-      + '\033[' + 27 + 'm'
-    );
-  } else {
-    return obj.value;
+    return inverse(red(valueMapper(obj.value)));
   }
+
+  return obj.value;
 }
 
 function tapPretty(argv, inputStream) {
@@ -49,8 +37,8 @@ function tapPretty(argv, inputStream) {
   let plan = null;
   let subPlan = null;
 
-  const writer = through.obj(function(obj, enc, cb) {
-    switch(obj.type) {
+  const writer = through.obj(function transformer(obj, enc, cb) {
+    switch (obj.type) {
       case 'plan': {
         if (obj.isChild) {
           if (subPlan) {
@@ -73,24 +61,24 @@ function tapPretty(argv, inputStream) {
       }
       case 'assert': {
         const self = this;
-        function pushSkippedAssert(obj) {
-          const indent = obj.isChild ? 8 : 4;
-          if (obj.skipReason !== null) {
-            self.push(pad(gray(`[SKIPPED] ${obj.name || ''}\n`), indent));
+        function pushSkippedAssert(assertObj) {
+          const indent = assertObj.isChild ? 8 : 4;
+          if (assertObj.skipReason !== null) {
+            self.push(pad(gray(`[SKIPPED] ${assertObj.name || ''}\n`), indent));
           } else {
-            self.push(pad(underline(`[TODO] ${obj.name || ''}\n`), indent));
+            self.push(pad(underline(`[TODO] ${assertObj.name || ''}\n`), indent));
           }
         }
-        function pushAssert(obj) {
-          const indent = obj.isChild ? 8 : 4;
-          if (obj.ok) {
-            self.push(pad(`${green(symbols.tick)} ${gray(obj.name || '')}\n`, indent));
+        function pushAssert(assertObj) {
+          const indent = assertObj.isChild ? 8 : 4;
+          if (assertObj.ok) {
+            self.push(pad(`${green(symbols.tick)} ${gray(assertObj.name || '')}\n`, indent));
           } else {
-            self.push(pad(red(`${symbols.cross} ${obj.name || ''}\n`), indent));
+            self.push(pad(red(`${symbols.cross} ${assertObj.name || ''}\n`), indent));
           }
         }
 
-        if (plan && (obj.number > plan.end || obj.number < plan.start)) {
+        if (plan && (obj.number > plan.end || obj.number < plan.start)) {
           const message = `Bad test number "${obj.number}", ${plan.start} to ${plan.end} expected\n`;
           this.push(pad(red(message)));
           break;
@@ -105,13 +93,11 @@ function tapPretty(argv, inputStream) {
           } else {
             pushSkippedAssert(obj);
           }
+        } else if (doCount) {
+          if (!obj.isChild) errors.push(obj.name);
+          pushAssert(obj);
         } else {
-          if (doCount) {
-            if (!obj.isChild) errors.push(obj.name);
-            pushAssert(obj);
-          } else {
-            pushSkippedAssert(obj);
-          }
+          pushSkippedAssert(obj);
         }
         break;
       }
@@ -133,18 +119,19 @@ function tapPretty(argv, inputStream) {
       }
       case 'diag': {
         if ('expected' in obj.value && 'actual' in obj.value) {
-          const { operator, expected, actual } = obj.value;
+          const diagIndent = (s) => `      ${s}`;
+          const { expected, actual } = obj.value;
           if (typeof expected !== typeof actual) {
             const actualStr = typeof actual === 'object' ? JSON.stringify(actual) : String(actual);
-            this.push('      ' + underline(red(`Expected ${typeof expected} (${expected}), but got ${typeof actual} (${actualStr})\n`)));
+            this.push(diagIndent(underline(red(`Expected ${typeof expected} (${expected}), but got ${typeof actual} (${actualStr})\n`))));
           } else if (typeof expected === 'object') {
             const str = difflet({ indent: 2, comment: true }).compare(expected, actual);
-            this.push(`      ${str.replace(/\n/g, '\n      ')}\n`);
+            this.push(diagIndent(`${str.replace(/\n/g, '\n      ')}\n`));
           } else if (typeof expected === 'string') {
             const objs = diff.diffChars(expected, actual);
-            this.push(`      ${objs.map(diffColorer).join('')}\n`);
+            this.push(diagIndent(`${objs.map(diffColorer).join('')}\n`));
           } else {
-            this.push('      ' + underline(red(`Expected ${expected}, but got ${actual}\n`)));
+            this.push(diagIndent(underline(red(`Expected ${expected}, but got ${actual}\n`))));
           }
         }
         break;

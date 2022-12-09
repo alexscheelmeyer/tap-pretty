@@ -5,12 +5,12 @@ const diff = require('diff');
 const tapPretty = require('../index');
 
 function removeLastLine(str) {
-  if(str.lastIndexOf('\n') > 0) {
+  if (str.lastIndexOf('\n') > 0) {
     str = str.substring(0, str.lastIndexOf('\n'));
     return str.substring(0, str.lastIndexOf('\n'));
-  } else {
-    return str;
   }
+
+  return str;
 }
 
 let failures = 0;
@@ -25,13 +25,12 @@ async function run() {
     const output = await getStream(tapPretty({}, inStream));
 
     console.log(inputName);
-    const [ same, removed, added ] = diff.diffLines(removeLastLine(contents), removeLastLine(output));
-    if (removed || added) {
+    const [same, removed, added] = diff.diffLines(removeLastLine(contents), removeLastLine(output));
+    if (removed || added) {
       failures++;
       console.log('failed comparison:', same, removed, added);
     }
   }
-
 }
 
 run()
