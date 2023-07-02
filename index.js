@@ -133,6 +133,16 @@ function tapPretty(argv, inputStream) {
           } else {
             this.push(diagIndent(underline(red(`Expected ${expected}, but got ${actual}\n`))));
           }
+        } else if (obj.value.operator === 'error' && 'stack' in obj.value) {
+          const diagIndent = (s) => `      ${s}`;
+          // Prettier error message
+          // console.log('obj', obj.value.stack)
+          const fileLines = obj.value.stack.match(/\(file:\/\/.+\)/g) || [];
+          if (fileLines[0]) {
+            this.push(diagIndent(`at ${fileLines[0]}`));
+          }
+          // console.log('fileLines', fileLines)
+          // console.log('__dirname', __dirname)
         }
         break;
       }
