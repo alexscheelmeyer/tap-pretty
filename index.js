@@ -160,6 +160,10 @@ function tapPretty(argv, inputStream) {
     const time = new Date().getTime() - startTime;
 
     writer.write({ type: 'summary', numAsserts, numPassed: countedPasses, numErrors, time });
+
+    if (numErrors > 0) {
+      process.exit(1);
+    }
   });
 
   return inputStream.pipe(tap).pipe(writer);
