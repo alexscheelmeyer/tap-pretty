@@ -133,6 +133,12 @@ function tapPretty(argv, inputStream) {
           } else {
             this.push(diagIndent(underline(red(`Expected ${expected}, but got ${actual}\n`))));
           }
+        } else if (obj.value.operator === 'error' && 'stack' in obj.value) {
+          // Prettier error message
+          const diagIndent = (s) => `      ${s}`;
+          const errorLines = obj.value.stack.split('\n').slice(1);
+          const indentedErrorLines = errorLines.map((l) => diagIndent(l)).join('\n');
+          this.push(gray(indentedErrorLines));
         }
         break;
       }
