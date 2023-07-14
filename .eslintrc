@@ -2,7 +2,7 @@
   "env": {
     "node": true,
   },
-  "extends": "cerebral",
+  "extends": "asm",
   "rules": {
   }
 }
