@@ -16,7 +16,7 @@ function isFinalStats(str) {
 
 function diffColorer(obj) {
   function valueMapper(val) {
-    return val.replace(/\n/g, '<newline').replace(/\s/g, '<whitespace>');
+    return val.replace(/\n/g, '<newline>').replace(/\s/g, '<whitespace>');
   }
 
   if (obj.added) {

@@ -4,7 +4,7 @@
     [32m✔[39m [90mcreate test repository[39m
     [32m✔[39m [90mpush to test repository[39m
     [31m✖ clone from test repository: did not match expectation
-[39m      new file[7m[32m<newline[39m[27m
+[39m      new file[7m[32m<newline>[39m[27m
 
 [31m[1m1 of 4 failing
 [22m[39m[32m[1m3 of 4 passing
