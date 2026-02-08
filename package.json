@@ -1,6 +1,6 @@
 {
   "name": "tap-pretty",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Yet another TAP output formatter",
   "main": "index.js",
   "scripts": {
@@ -26,10 +26,10 @@
   "homepage": "https://github.com/alexscheelmeyer/tap-pretty#readme",
   "dependencies": {
     "colorette": "2.0.16",
-    "diff": "5.0.0",
+    "diff": "5.2.2",
     "difflet": "1.0.1",
     "figures": "3.2.0",
-    "js-yaml": "4.1.0",
+    "js-yaml": "4.1.1",
     "minimist": "1.2.6",
     "pretty-ms": "7.0.1",
     "through2": "4.0.2"
